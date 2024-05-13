@@ -25,13 +25,14 @@ export const signup=async(req,res)=>{
         if(!newUser){
             res.send("User not created")
         }
-
+    
         const token=generateToken(email)
-        res.send(token)
+        res.cookie("token",token)
+        res.send("Signed Up Successfully")
         
     } catch (error) {
-        console.log(error)
-        return res.send(error)
+        console.log(error,"Something went to wrong")
+        return res.status(500).send("Internal Sever Error")
         
     }
 }
@@ -52,9 +53,11 @@ try {
     }
 
     const token=generateToken(email)
-    res.send(token)
+    res.cookie(token)
+    res.send("Login Successfully")
 } catch (error) {
-    console.log(error)
+    console.log(error,"Something went to wrong")
+    res.status(500).send("Internal server error")
 }
 }
 

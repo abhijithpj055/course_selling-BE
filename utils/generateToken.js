@@ -9,3 +9,6 @@ export const generateToken=(email)=>{
 
 }
 
+export const adminToken =(user)=>{
+    return jwt.sign({data:user.id,role:user.role},secret_key,{expiresIn:'1d'})
+}
