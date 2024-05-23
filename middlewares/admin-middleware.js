@@ -4,6 +4,7 @@ dotenv.config()
 
 function authenticateAdmin(req,res,next){
     const token =req.cookies.token;
+    console.log(token)
 
     jwt.verify(token,process.env.SECRET_KEY,(err,user)=>{
         console.log(err);
